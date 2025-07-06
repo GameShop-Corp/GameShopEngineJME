@@ -13,6 +13,11 @@ application {
     if (System.getProperty("os.name").toLowerCase().contains("mac")) {
         applicationDefaultJvmArgs = ['-XstartOnFirstThread']
     }
+    
+   List<String> argumentList = new ArrayList<String>();
+    argumentList.add('-Xms13824m')
+    argumentList.add('-Xmx14336m')
+    applicationDefaultJvmArgs = argumentList
 }
 
 repositories {
@@ -93,3 +98,4 @@ java {
 wrapper {
     gradleVersion = '8.6'
 }
+
