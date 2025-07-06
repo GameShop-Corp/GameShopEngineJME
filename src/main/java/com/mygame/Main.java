@@ -10,8 +10,11 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Box;
 import com.jme3.scene.shape.Quad;
 import com.jme3.texture.Texture2D;
+import com.mygame.app.App;
+import com.mygame.app.SuperMeshApp;
 import com.mygame.graphics.ATMS;
 import com.mygame.niftygui.StartScreenController;
+import com.mygame.supermesh.Base;
 import de.lessvoid.nifty.Nifty;
 
 /**
@@ -30,20 +33,24 @@ public class Main extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
+        App.getInstance().app = this;
         reportMemory();
-        Quad b = new Quad(4, 4);
-        Geometry geom = new Geometry("Box", b);
-        
-        ATMS atms = new ATMS("Box", 128,128);
-        atms.layer.drawCircle(64, 64, 64, new Vector4f(255,255,255,255));
+//        Quad b = new Quad(4, 4);
+//        Geometry geom = new Geometry("Box", b);
+//        
+//        ATMS atms = new ATMS("Box", 128,128);
+//        atms.layer.drawCircle(64, 64, 64, new Vector4f(255,255,255,255));
+//
+//        Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+//        mat.setColor("Color", ColorRGBA.White);
+//        mat.setTexture("ColorMap", new Texture2D(atms.makeATMS()));
+//        geom.setMaterial(mat);
+//
+//        rootNode.attachChild(geom);
 
-        Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.setColor("Color", ColorRGBA.White);
-        mat.setTexture("ColorMap", new Texture2D(atms.makeATMS()));
-        geom.setMaterial(mat);
-
-        rootNode.attachChild(geom);
-        
+        Base base = new Base(7, new Vector4f(255,255,255,255));
+        SuperMeshApp.getInstance().superMeshes.put("base", base.superMesh);
+         
         NiftyJmeDisplay niftyDisplay = NiftyJmeDisplay.newNiftyJmeDisplay(
                 assetManager,
                 inputManager,

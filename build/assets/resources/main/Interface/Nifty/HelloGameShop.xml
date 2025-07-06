@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <nifty>
   <screen id="start" controller="com.mygame.niftygui.StartScreenController">
-    <layer id="layer" backgroundColor="#0000" childLayout="center">
-      <panel id="panel" height="25%" width="35%" align="center" valign="center" backgroundColor="#f60f" childLayout="center" visibleToMouse="true">
+    <layer id="layer" backgroundColor="#0000" childLayout="horizontal">
+      <panel id="panel" height="25%" width="35%" align="left" valign="top" backgroundColor="#ffff" childLayout="vertical" visibleToMouse="true">
+      <!-- using XML -->
+<control id="myListBox" name="listBox" vertical="on" horizontal="optional" displayItems="25" selection="Multiple" />
+
+      </panel>
+        <panel id="panel1" height="25%" width="35%" align="left" valign="top" backgroundColor="#f60f" childLayout="vertical" visibleToMouse="true">
         <interact onClick="quit()"/>
         <effect>
           <onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
