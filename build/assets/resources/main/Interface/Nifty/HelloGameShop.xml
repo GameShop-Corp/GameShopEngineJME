@@ -1,13 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <nifty>
   <screen id="start" controller="com.mygame.niftygui.StartScreenController">
-    <layer id="layer" backgroundColor="#0000" childLayout="horizontal">
-      <panel id="panel" height="25%" width="35%" align="left" valign="top" backgroundColor="#ffff" childLayout="vertical" visibleToMouse="true">
+    <layer id="layer" backgroundColor="#0000" childLayout="vertical">
+        <panel id="taskbar" height="10%" width="100%" align="left" valign="top" backgroundColor="#ffff" childLayout="vertical" visibleToMouse="true">
+            
+            <text id="text" font="aurulent-sans-16.fnt" color="#000f" text="Modes" align="center" valign="center" />
+    
+        </panel>
+        
+        <panel id="higher" height="25%" width="100%" align="left" valign="top" backgroundColor="#000f" childLayout="horizontal" visibleToMouse="true">
+            
+
+      <panel id="hierarchy" height="100%" width="15%" align="left" valign="top" backgroundColor="#000f" childLayout="vertical" visibleToMouse="true">
       <!-- using XML -->
-<control id="myListBox" name="listBox" vertical="on" horizontal="optional" displayItems="25" selection="Multiple" />
+
+          <control id="myListBox" name="listBox" vertical="on" horizontal="optional" displayItems="10" selection="Multiple" />
 
       </panel>
-        <panel id="panel1" height="25%" width="35%" align="left" valign="top" backgroundColor="#f60f" childLayout="vertical" visibleToMouse="true">
+           <panel id="space" height="100%" width="70%" align="left" valign="top" backgroundColor="#000f" childLayout="vertical" visibleToMouse="true">
+      <!-- using XML -->
+
+          <!--<control id="myListBox" name="listBox" vertical="on" horizontal="optional" displayItems="10" selection="Multiple" />-->
+
+      </panel>
+           <panel id="inspector" height="100%" width="15%" align="left" valign="top" backgroundColor="#ffff" childLayout="vertical" visibleToMouse="true">
+      <!-- using XML -->
+
+          <control id="myListBox" name="listBox" vertical="on" horizontal="optional" displayItems="10" selection="Multiple" />
+
+      </panel>
+        </panel>
+<!--        <panel id="panel1" height="25%" width="35%" align="left" valign="top" backgroundColor="#f60f" childLayout="vertical" visibleToMouse="true">
         <interact onClick="quit()"/>
         <effect>
           <onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
@@ -15,7 +38,7 @@
           <onHover name="pulsate" scaleFactor="0.008" startColor="#f600" endColor="#ffff" post="true"/>
         </effect>
         <text id="text" font="aurulent-sans-16.fnt" color="#000f" text="Hello from jME3" align="center" valign="center" />
-      </panel>
+      </panel>-->
     </layer>
   </screen>
   <screen id="end">

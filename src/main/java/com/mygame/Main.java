@@ -15,6 +15,7 @@ import com.mygame.app.SuperMeshApp;
 import com.mygame.graphics.ATMS;
 import com.mygame.niftygui.StartScreenController;
 import com.mygame.supermesh.Base;
+import com.mygame.ui.Selector;
 import de.lessvoid.nifty.Nifty;
 
 /**
@@ -35,18 +36,7 @@ public class Main extends SimpleApplication {
     public void simpleInitApp() {
         App.getInstance().app = this;
         reportMemory();
-//        Quad b = new Quad(4, 4);
-//        Geometry geom = new Geometry("Box", b);
-//        
-//        ATMS atms = new ATMS("Box", 128,128);
-//        atms.layer.drawCircle(64, 64, 64, new Vector4f(255,255,255,255));
-//
-//        Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-//        mat.setColor("Color", ColorRGBA.White);
-//        mat.setTexture("ColorMap", new Texture2D(atms.makeATMS()));
-//        geom.setMaterial(mat);
-//
-//        rootNode.attachChild(geom);
+ 
 
         Base base = new Base(7, new Vector4f(255,255,255,255));
         SuperMeshApp.getInstance().superMeshes.put("base", base.superMesh);
@@ -69,6 +59,9 @@ public class Main extends SimpleApplication {
         flyCam.setEnabled(false);
         flyCam.setDragToRotate(true);
         inputManager.setCursorVisible(true);
+         
+        Selector selector = new Selector(base.superMesh, base.superMesh.superMesh.get("front"), 0,0);
+        
     }
 
     @Override
