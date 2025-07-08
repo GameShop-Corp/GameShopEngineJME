@@ -1,6 +1,14 @@
 package com.mygame;
 
 import com.jme3.app.SimpleApplication;
+import com.jme3.input.InputManager;
+import com.jme3.input.JoyInput;
+import com.jme3.input.KeyInput;
+import com.jme3.input.MouseInput;
+import com.jme3.input.TouchInput;
+import com.jme3.input.controls.ActionListener;
+import com.jme3.input.controls.AnalogListener;
+import com.jme3.input.controls.KeyTrigger;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector4f;
@@ -37,13 +45,14 @@ public class Main extends SimpleApplication {
         App.getInstance().app = this;
         reportMemory();
  
+        //InputManager ipm = new InputManager(new MouseInput(), new KeyInput(),new JoyInput(), new TouchInput());
 
         Base base = new Base(7, new Vector4f(255,255,255,255));
         SuperMeshApp.getInstance().superMeshes.put("base", base.superMesh);
          
         NiftyJmeDisplay niftyDisplay = NiftyJmeDisplay.newNiftyJmeDisplay(
                 assetManager,
-                inputManager,
+                null,
                 audioRenderer,
                 guiViewPort);
         nifty = niftyDisplay.getNifty();
@@ -58,7 +67,7 @@ public class Main extends SimpleApplication {
         // disable the fly cam
         flyCam.setEnabled(true);
         //flyCam.setDragToRotate(true);
-        //inputManager.setCursorVisible(true);
+        inputManager.setCursorVisible(true);
          
         Selector selector = new Selector(base.superMesh, base.superMesh.superMesh.get("front"), 0,0);
         
@@ -84,5 +93,38 @@ public class Main extends SimpleApplication {
                 System.out.println("allocated: " + allocatedMemory);
                 System.out.println("free: " + freeMemory);
         }
+        
+        private void setUpKeys() {
+    inputManager.addMapping("Left", new KeyTrigger(KeyInput.KEY_A));
+    inputManager.addMapping("Right", new KeyTrigger(KeyInput.KEY_D));
+    inputManager.addMapping("Up", new KeyTrigger(KeyInput.KEY_W));
+    inputManager.addMapping("Down", new KeyTrigger(KeyInput.KEY_S));
+    inputManager.addMapping("Jump", new KeyTrigger(KeyInput.KEY_SPACE));
+    inputManager.addListener(analogListener, "Left");
+    inputManager.addListener(analogListener, "Right");
+    inputManager.addListener(analogListener, "Forward");
+    inputManager.addListener(analogListener, "Backward");
+     
+}
+        
+           private final ActionListener actionListener = new ActionListener() {
+        @Override
+        public void onAction(String name, boolean keyPressed, float tpf) {
+//            if (name.equals("Pause") && !keyPressed) {
+//                isRunning = !isRunning;
+//            }
+        }
+    };
+
+    private final AnalogListener analogListener = new AnalogListener() {
+        @Override
+        public void onAnalog(String name, float value, float tpf) {
+            if (name.equals("Forward")){
+            
+            
+               // cam.get
+            }
+        }
+    };
 }
 

@@ -17,8 +17,8 @@
           <control id="myListBox" name="listBox" vertical="on" horizontal="optional" displayItems="10" selection="Multiple" />
 
       </panel>
-           <panel id="space" height="100%" width="70%" align="left" valign="top" backgroundColor="#fff0" childLayout="vertical" visibleToMouse="true">
-      <!-- using XML -->
+           <panel id="space" height="100%" width="70%" align="left" valign="top" backgroundColor="#0000" childLayout="vertical" visibleToMouse="true">
+       <!--using XML--> 
 
           <!--<control id="myListBox" name="listBox" vertical="on" horizontal="optional" displayItems="10" selection="Multiple" />-->
 
@@ -26,7 +26,7 @@
            <panel id="inspector" height="100%" width="15%" align="left" valign="top" backgroundColor="#ffff" childLayout="vertical" visibleToMouse="true">
       <!-- using XML -->
 
-          <control id="myListBox" name="listBox" vertical="on" horizontal="optional" displayItems="10" selection="Multiple" />
+          <!--<control id="myListBox" name="listBox" vertical="on" horizontal="optional" displayItems="10" selection="Multiple" />-->
 
       </panel>
         </panel>

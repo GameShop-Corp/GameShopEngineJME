@@ -14,6 +14,7 @@ import com.jme3.math.Vector3f;
 import com.mygame.app.SuperMeshApp;
 import com.mygame.graphics.SuperLine;
 import com.mygame.graphics.SuperMesh;
+import com.mygame.input.MyInputMapping;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
 import de.lessvoid.nifty.controls.ListBox;
@@ -54,6 +55,7 @@ public class StartScreenController implements ScreenController {
         System.out.println("bind(" + screen.getScreenId() + ")");
         this.nifty = nifty;
         this.screen = screen;
+        screen.addKeyboardInputHandler(new MyInputMapping(), null);
     }
 
     /**
