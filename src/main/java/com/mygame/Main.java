@@ -51,14 +51,14 @@ public class Main extends SimpleApplication {
         nifty.loadControlFile("nifty-default-controls.xml");
         StartScreenController startScreen = new StartScreenController(this);
         nifty.fromXml("Interface/Nifty/HelloGameShop.xml", "start", startScreen);
-
+        
         // attach the nifty display to the gui view port as a processor
         guiViewPort.addProcessor(niftyDisplay);
-
+        
         // disable the fly cam
-        flyCam.setEnabled(false);
-        flyCam.setDragToRotate(true);
-        inputManager.setCursorVisible(true);
+        flyCam.setEnabled(true);
+        //flyCam.setDragToRotate(true);
+        //inputManager.setCursorVisible(true);
          
         Selector selector = new Selector(base.superMesh, base.superMesh.superMesh.get("front"), 0,0);
         
