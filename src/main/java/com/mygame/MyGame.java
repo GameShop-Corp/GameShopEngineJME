@@ -65,8 +65,9 @@ public class MyGame extends SimpleApplication implements ActionListener {
     public void simpleInitApp() {
         this.setDisplayFps(false);
         this.setDisplayStatView(false);
-        inputManager.setSimulateMouse(false);
+        //inputManager.setSimulateMouse(true);
         appSettings = this.settings;
+        //appSettings.setEmulateMouse(true);
         App myApp = new App(this);
 
 

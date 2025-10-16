@@ -1,6 +1,9 @@
 package com.mygame.gameshopengine.app;
 
+import com.jme3.input.MouseInput;
 import com.jme3.input.TouchInput;
+import com.jme3.input.controls.MouseAxisTrigger;
+import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.input.controls.TouchTrigger;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector4f;
@@ -19,9 +22,8 @@ import com.mygame.gameshopengine.os.MakeATMS;
 import com.mygame.gameshopengine.os.MakeBlueBox;
 import com.mygame.gameshopengine.os.MakeGameShopUI;
 import com.mygame.gameshopengine.ui.Selector;
-import com.mygame.gameshopengine.ui.SelectorTouchListener;
+import com.mygame.gameshopengine.ui.SelectMouseListener;
 //import gameshop.gameshopcorp.gameshopengine.MyGame;
-
 public class App {
 
     public static MyGame app;
@@ -54,10 +56,30 @@ public class App {
         radius = new Vector2f(10f, 0f);
         makeOS();
 
-        App.app.getInputManager().addMapping("MyTouch", new TouchTrigger(TouchInput.ALL));
-        App.app.getInputManager().addListener(new SelectorTouchListener(), "MyTouch");
-        App.app.getInputManager().addMapping("MyTouch1", new TouchTrigger(TouchInput.ALL));
-        App.app.getInputManager().addListener(new SelectorTouchListener(), "MyTouch1");
+        App.app.getInputManager().addMapping("ClickLeft", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
+        App.app.getInputManager().addListener(new SelectMouseListener(), "ClickLeft");
+        
+        App.app.getInputManager().addMapping("ClickRight", new MouseButtonTrigger(MouseInput.BUTTON_RIGHT));
+        App.app.getInputManager().addListener(new SelectMouseListener(), "ClickRight");
+        
+        App.app.getInputManager().addMapping("ClickMiddle", new MouseButtonTrigger(MouseInput.BUTTON_MIDDLE));
+        App.app.getInputManager().addListener(new SelectMouseListener(), "ClickMiddle");
+        
+        App.app.getInputManager().addMapping("MoveLeft",new MouseAxisTrigger(MouseInput.AXIS_X, false));
+        App.app.getInputManager().addListener(new SelectMouseListener(), "MoveLeft");
+        
+        App.app.getInputManager().addMapping("MoveRight", new MouseAxisTrigger(MouseInput.AXIS_X, true));
+        App.app.getInputManager().addListener(new SelectMouseListener(), "MoveRight");
+        
+        App.app.getInputManager().addMapping("MoveUp", new MouseAxisTrigger(MouseInput.AXIS_Y, true));
+        App.app.getInputManager().addListener(new SelectMouseListener(), "MoveUp");
+        
+        App.app.getInputManager().addMapping("MoveDown", new MouseAxisTrigger(MouseInput.AXIS_Y, false));
+        App.app.getInputManager().addListener(new SelectMouseListener(), "MoveDown");
+
+        
+//        App.app.getInputManager().addMapping("MyTouch1", new TouchTrigger(TouchInput.ALL));
+//        App.app.getInputManager().addListener(new SelectMouseListener(), "MyTouch1");
 
 //        selector = new Selector();
     }
