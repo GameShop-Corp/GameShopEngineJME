@@ -26,7 +26,7 @@ import static com.mygame.gameshopengine.ui.Selector.moveNode;
 import static com.mygame.gameshopengine.ui.Selector.mover;
 import static com.mygame.gameshopengine.ui.Selector.selected;
 
-public class SelectMouseListener implements ActionListener {
+public class SelectMouseListener implements ActionListener, AnalogListener {
 
     //public int lastEventPointer = -1;
 
@@ -134,92 +134,94 @@ public class SelectMouseListener implements ActionListener {
                     }
                 }
             }
-        }
-        else if ((name.equals("MoveLeft") || name.equals("MoveRight") || name.equals("MoveUp") || name.equals("MoveDown"))){ //DOWN
-            
-            
-            Vector2f scroll2d = App.app.getInputManager().getCursorPosition();
-            if (App.screenContainer.scroll(scroll2d).equals("")) {
-
-                if (App.screenContainer.selectedScreen.equals("uiScreen")) {
-
-                    if (geometryScaler.selected) {
-                         
-                        if (name.equals("MoveRight")) {
-                            geometryScaler.move(0.01f, -0.01f, 0.01f);
-                        }
-                        if (name.equals("MoveLeft")) {
-                            geometryScaler.move(-0.01f, 0.01f, -0.01f);
-
-                        }
-                    }
-                    if (mover.selected) {
-                        if (mover.getName().contains("Up")) {
-                            if (name.equals("MoveRight")) {
-                                delta = delta.add(0, 0.01f, 0);
-                                moveNode.move(0, 0.01f, 0);
-                            }
-                            if (name.equals("MoveLeft")) {
-                                delta = delta.add(0, -0.01f, 0);
-                                moveNode.move(0, -0.01f, 0);
-                            }
-                        }
-                        if (mover.getName().contains("Down")) {
-                            if (name.equals("MoveRight")) {
-                                delta = delta.add(0, 0.01f, 0);
-                                moveNode.move(0, 0.01f, 0);
-                            }
-                            if (name.equals("MoveLeft")) {
-                                delta = delta.add(0, -0.01f, 0);
-                                moveNode.move(0, -0.01f, 0);
-                            }
-                        }
-                        if (mover.getName().contains("Left")) {
-                            if (name.equals("MoveRight")) {
-                                delta = delta.add(0.01f, 0.0f, 0);
-                                moveNode.move(0.01f, 0, 0);
-                            }
-                            if (name.equals("MoveLeft")) {
-                                delta = delta.add(-0.01f, 0f, 0);
-                                moveNode.move(-0.01f, 0, 0);
-                            }
-                        }
-                        if (mover.getName().contains("Right")) {
-                            if (name.equals("MoveRight")) {
-                                delta = delta.add(0.01f, 0, 0);
-                                moveNode.move(0.01f, 0, 0);
-                            }
-                            if (name.equals("MoveLeft")) {
-                                delta = delta.add(-0.01f, 0f, 0);
-                                moveNode.move(-0.01f, 0, 0);
-                            }
-                        }
-                        if (mover.getName().contains("Front")) {
-                            if (name.equals("MoveRight")) {
-                                delta = delta.add(0, 0f, 0.01f);
-                                moveNode.move(0, 0, 0.01f);
-                            }
-                            if (name.equals("MoveLeft")) {
-                                delta = delta.add(0, 0.0f, -0.01f);
-                                moveNode.move(0, 0, -0.01f);
-                            }
-                        }
-                        if (mover.getName().contains("Back")) {
-                            if (name.equals("MoveRight")) {
-                                delta = delta.add(0, 0.0f, 0.01f);
-                                moveNode.move(0, 0, 0.01f);
-                            }
-                            if (name.equals("MoveLeft")) {
-                                delta = delta.add(0, 0.0f, -0.01f);
-                                moveNode.move(0, 0, -0.01f);
-                            }
-                        }
-                    }
-                } else if (App.screenContainer.selectedScreen.equals("uiScreenATMS")) {
-
-                }
-            }
-            
+//        }
+//        else if (!keyPressed){ //DOWN
+//            
+//            
+//            Vector2f scroll2d = App.app.getInputManager().getCursorPosition();
+//            if (App.screenContainer.scroll(scroll2d).equals("")) {
+//
+//                if (App.screenContainer.selectedScreen.equals("uiScreen")) {
+//
+//                    if (geometryScaler.selected) {
+//                         
+//                        if (scroll2d.x > App.app.appSettings.getWindowWidth()/2) {
+//                            geometryScaler.move(0.01f, -0.01f, 0.01f);
+//                        }
+//                        if (scroll2d.x < App.app.appSettings.getWindowWidth()/2) {
+//                            geometryScaler.move(-0.01f, 0.01f, -0.01f);
+//
+//                        }
+//                    }
+//                    if (mover.selected) {
+//                        if (mover.getName().contains("Up")) {
+//                            if (scroll2d.x > App.app.appSettings.getWindowWidth()/2) {
+//                                delta = delta.add(0, 0.01f, 0);
+//                                moveNode.move(0, 0.01f, 0);
+//                            }
+//                            if (scroll2d.x < App.app.appSettings.getWindowWidth()/2) {
+//                                delta = delta.add(0, -0.01f, 0);
+//                                moveNode.move(0, -0.01f, 0);
+//                            }
+//                            System.out.println("X: " + scroll2d.x);
+//                            
+//                        }
+//                        if (mover.getName().contains("Down")) {
+//                            if (name.equals("MoveRight")) {
+//                                delta = delta.add(0, 0.01f, 0);
+//                                moveNode.move(0, 0.01f, 0);
+//                            }
+//                            if (name.equals("MoveLeft")) {
+//                                delta = delta.add(0, -0.01f, 0);
+//                                moveNode.move(0, -0.01f, 0);
+//                            }
+//                        }
+//                        if (mover.getName().contains("Left")) {
+//                            if (name.equals("MoveRight")) {
+//                                delta = delta.add(0.01f, 0.0f, 0);
+//                                moveNode.move(0.01f, 0, 0);
+//                            }
+//                            if (name.equals("MoveLeft")) {
+//                                delta = delta.add(-0.01f, 0f, 0);
+//                                moveNode.move(-0.01f, 0, 0);
+//                            }
+//                        }
+//                        if (mover.getName().contains("Right")) {
+//                            if (name.equals("MoveRight")) {
+//                                delta = delta.add(0.01f, 0, 0);
+//                                moveNode.move(0.01f, 0, 0);
+//                            }
+//                            if (name.equals("MoveLeft")) {
+//                                delta = delta.add(-0.01f, 0f, 0);
+//                                moveNode.move(-0.01f, 0, 0);
+//                            }
+//                        }
+//                        if (mover.getName().contains("Front")) {
+//                            if (name.equals("MoveRight")) {
+//                                delta = delta.add(0, 0f, 0.01f);
+//                                moveNode.move(0, 0, 0.01f);
+//                            }
+//                            if (name.equals("MoveLeft")) {
+//                                delta = delta.add(0, 0.0f, -0.01f);
+//                                moveNode.move(0, 0, -0.01f);
+//                            }
+//                        }
+//                        if (mover.getName().contains("Back")) {
+//                            if (name.equals("MoveRight")) {
+//                                delta = delta.add(0, 0.0f, 0.01f);
+//                                moveNode.move(0, 0, 0.01f);
+//                            }
+//                            if (name.equals("MoveLeft")) {
+//                                delta = delta.add(0, 0.0f, -0.01f);
+//                                moveNode.move(0, 0, -0.01f);
+//                            }
+//                        }
+//                    }
+//                } else if (App.screenContainer.selectedScreen.equals("uiScreenATMS")) {
+//
+//                }
+//            }
+//            
             
          //clickLeft = true;
         } else if (clickLeft && !keyPressed){ //UP
@@ -253,5 +255,96 @@ public class SelectMouseListener implements ActionListener {
 
                 }
         } 
+    }
+
+    @Override
+    public void onAnalog(String name, float value, float tpf) {
+        // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       
+        if (name.equals("MoveLeft") || name.equals("MoveRight") ||name.equals("MoveUp") ||name.equals("MoveDown")){
+        Vector2f scroll2d = App.app.getInputManager().getCursorPosition();
+        if (App.screenContainer.scroll(scroll2d).equals("")) {
+
+            if (App.screenContainer.selectedScreen.equals("uiScreen")) {
+
+                if (geometryScaler.selected) {
+
+                    if (name.equals("MoveRight")) {
+                        geometryScaler.move(0.01f, -0.01f, 0.01f);
+                    }
+                    if (name.equals("MoveLeft")) {
+                        geometryScaler.move(-0.01f, 0.01f, -0.01f);
+
+                    }
+                }
+                if (mover.selected) {
+                    if (mover.getName().contains("Up")) {
+                        if (name.equals("MoveRight")) {
+                            delta = delta.add(0, 0.01f, 0);
+                            moveNode.move(0, 0.01f, 0);
+                        }
+                        if (name.equals("MoveLeft")) {
+                            delta = delta.add(0, -0.01f, 0);
+                            moveNode.move(0, -0.01f, 0);
+                        }
+                        System.out.println("X: " + scroll2d.x);
+
+                    }
+                    if (mover.getName().contains("Down")) {
+                        if (name.equals("MoveRight")) {
+                            delta = delta.add(0, 0.01f, 0);
+                            moveNode.move(0, 0.01f, 0);
+                        }
+                        if (name.equals("MoveLeft")) {
+                            delta = delta.add(0, -0.01f, 0);
+                            moveNode.move(0, -0.01f, 0);
+                        }
+                    }
+                    if (mover.getName().contains("Left")) {
+                        if (name.equals("MoveRight")) {
+                            delta = delta.add(0.01f, 0.0f, 0);
+                            moveNode.move(0.01f, 0, 0);
+                        }
+                        if (name.equals("MoveLeft")) {
+                            delta = delta.add(-0.01f, 0f, 0);
+                            moveNode.move(-0.01f, 0, 0);
+                        }
+                    }
+                    if (mover.getName().contains("Right")) {
+                        if (name.equals("MoveRight")) {
+                            delta = delta.add(0.01f, 0, 0);
+                            moveNode.move(0.01f, 0, 0);
+                        }
+                        if (name.equals("MoveLeft")) {
+                            delta = delta.add(-0.01f, 0f, 0);
+                            moveNode.move(-0.01f, 0, 0);
+                        }
+                    }
+                    if (mover.getName().contains("Front")) {
+                        if (name.equals("MoveRight")) {
+                            delta = delta.add(0, 0f, 0.01f);
+                            moveNode.move(0, 0, 0.01f);
+                        }
+                        if (name.equals("MoveLeft")) {
+                            delta = delta.add(0, 0.0f, -0.01f);
+                            moveNode.move(0, 0, -0.01f);
+                        }
+                    }
+                    if (mover.getName().contains("Back")) {
+                        if (name.equals("MoveRight")) {
+                            delta = delta.add(0, 0.0f, 0.01f);
+                            moveNode.move(0, 0, 0.01f);
+                        }
+                        if (name.equals("MoveLeft")) {
+                            delta = delta.add(0, 0.0f, -0.01f);
+                            moveNode.move(0, 0, -0.01f);
+                        }
+                    }
+                }
+            } else if (App.screenContainer.selectedScreen.equals("uiScreenATMS")) {
+
+            }
+        }
+        }
     }
 }
