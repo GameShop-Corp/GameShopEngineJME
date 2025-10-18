@@ -280,12 +280,12 @@ public class SelectMouseListener implements ActionListener, AnalogListener {
                 if (mover.selected) {
                     if (mover.getName().contains("Up")) {
                         if (name.equals("MoveRight")) {
-                            delta = delta.add(0, 0.01f, 0);
-                            moveNode.move(0, 0.01f, 0);
+                            delta = delta.add(0, 0.01f , 0);
+                            moveNode.move(0, 0.01f  , 0);
                         }
                         if (name.equals("MoveLeft")) {
-                            delta = delta.add(0, -0.01f, 0);
-                            moveNode.move(0, -0.01f, 0);
+                            delta = delta.add(0, -0.01f  , 0);
+                            moveNode.move(0, -0.01f , 0);
                         }
                         System.out.println("X: " + scroll2d.x);
 
