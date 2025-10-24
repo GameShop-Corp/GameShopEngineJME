@@ -1,7 +1,9 @@
 package com.mygame.gameshopengine.app;
 
+import com.jme3.input.KeyInput;
 import com.jme3.input.MouseInput;
 import com.jme3.input.TouchInput;
+import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseAxisTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.input.controls.TouchTrigger;
@@ -56,6 +58,8 @@ public class App {
         radius = new Vector2f(10f, 0f);
         makeOS();
 
+        App.app.getInputManager().addMapping("Deselect", new KeyTrigger(KeyInput.KEY_Q));
+        App.app.getInputManager().addListener(new SelectMouseListener(), "Deselect");
         App.app.getInputManager().addMapping("ClickLeft", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
         App.app.getInputManager().addListener(new SelectMouseListener(), "ClickLeft");
         

@@ -39,6 +39,7 @@ public class SelectMouseListener implements ActionListener, AnalogListener {
   
     
     public boolean clickLeft = false;
+    public boolean canMove = false;
 
     @Override
     public void onAction(String name, boolean keyPressed, float tpf) {
@@ -47,6 +48,10 @@ public class SelectMouseListener implements ActionListener, AnalogListener {
         if (name.equals("ClickLeft") && keyPressed){ //TAP
           
             clickLeft = true;
+            
+            
+//
+            //canMove = false;
             // Reset results list.
             CollisionResults results = new CollisionResults();
             // Convert screen click to 3d position
@@ -73,8 +78,10 @@ public class SelectMouseListener implements ActionListener, AnalogListener {
 
             if (App.screenContainer.selectedScreen.equals("uiScreen")) {
 
+               // canMove = false;
                 // Use the results -- we rotate the selected geometry.
                 if (results.size() > 0) {
+                   // canMove = true;
                     // The closest result is the target that the player picked:
                     Target target = null;
 
@@ -86,12 +93,15 @@ public class SelectMouseListener implements ActionListener, AnalogListener {
                         }
                         if (targetName.contains("Box")) {
                             target = (GeometrySelector) results.getCollision(i).getGeometry();
+                            //canMove = true;
                         }
                         if (targetName.contains("Move")) {
                             target = (GeometryMover) results.getCollision(i).getGeometry();
+                            //canMove = true;
                         }
                         if (targetName.contains("Scale")) {
                             target = (GeometryScaler) results.getCollision(i).getGeometry();
+                            //canMove = true;
                         }
                         break;
                     }
@@ -132,7 +142,7 @@ public class SelectMouseListener implements ActionListener, AnalogListener {
 
                         }
                     }
-                }
+                }    
             }
 //        }
 //        else if (!keyPressed){ //DOWN
@@ -224,7 +234,8 @@ public class SelectMouseListener implements ActionListener, AnalogListener {
 //            
             
          //clickLeft = true;
-        } else if (clickLeft && !keyPressed){ //UP
+        } 
+        else if (clickLeft && !keyPressed){ //UP
           
             clickLeft = false;
             
@@ -237,13 +248,17 @@ public class SelectMouseListener implements ActionListener, AnalogListener {
                 if (App.screenContainer.selectedScreen.equals("uiScreen")) {
 
                     if (geometryScaler.selected) {
+                        if (canMove){
                        App.selector.moveAllSelectedPointsRelativeToCenter();
-                       // App.selector.moveAllSelectedPoints();
+                        }                       
+// App.selector.moveAllSelectedPoints();
                         geometryScaler.deselect();
                         App.selector.makeScaler();
                     }
                     if (!selected.isEmpty()) {
+                        if (canMove){
                         App.selector.moveAllSelectedPoints();
+                        }
                       //  App.selector.removeFromMoveNode();
 //                        App.selector.moveAllSelectedPoints();
                         if (selected.size() > 1) {
@@ -260,8 +275,12 @@ public class SelectMouseListener implements ActionListener, AnalogListener {
     @Override
     public void onAnalog(String name, float value, float tpf) {
         // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       //System.out.println(canMove);
+        
+        if ((name.equals("MoveLeft") || name.equals("MoveRight") ||name.equals("MoveUp") ||name.equals("MoveDown"))){
        
-        if (name.equals("MoveLeft") || name.equals("MoveRight") ||name.equals("MoveUp") ||name.equals("MoveDown")){
+             
+             
         Vector2f scroll2d = App.app.getInputManager().getCursorPosition();
         if (App.screenContainer.scroll(scroll2d).equals("")) {
 
